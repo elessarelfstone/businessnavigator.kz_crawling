@@ -1,0 +1,20 @@
+2017-12-08 11:44:03,637 Telecom_Storage ERROR    ORA-01036: illegal variable name/number
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 16, in fill_main_storage
+    or_cur.executemany(sql, data)
+cx_Oracle.DatabaseError: ORA-01036: illegal variable name/number
+2017-12-08 11:50:48,730 Telecom_Storage ERROR    ORA-01036: illegal variable name/number
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 16, in fill_main_storage
+    or_cur.executemany(sql, data)
+cx_Oracle.DatabaseError: ORA-01036: illegal variable name/number
+2017-12-08 11:51:59,263 Telecom_Storage ERROR    ORA-01036: illegal variable name/number
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 16, in fill_main_storage
+    or_cur.executemany(sql, data)
+cx_Oracle.DatabaseError: ORA-01036: illegal variable name/number
+2017-12-08 11:59:15,619 Telecom_Storage ERROR    'cx_Oracle.Connection' object has no attribute 'or_cur'
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 18, in fill_main_storage
+    self._oracle_conn.or_cur.commit()
+AttributeError: 'cx_Oracle.Connection' object has no attribute 'or_cur'
