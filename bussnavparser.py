@@ -79,21 +79,24 @@ class BusinessNavigatorParser:
 	
 	def _get_company_data(self, url):
 		'''получение данных о компании во внутренней странице в виде словаря'''
-		page = req.get(url)
-		html = page.text
-		soup = BeautifulSoup(html, 'lxml')
-		data = {}		
-		for key in self._columns.keys():
-			try:
-				val = soup.find("td", text=re.compile(self._columns[key])).next_sibling.next_sibling.text				
-			except:
-				val = ''
-			data[key] = val
-		val = soup.find("h1", class_="name-company").text		
-		data['name'] = val
-		return data
+		try:
+			page = req.get(url)
+			html = page.text
+			soup = BeautifulSoup(html, 'lxml')
+			data = {}		
+			for key in self._columns.keys():
+				try:
+					val = soup.find("td", text=re.compile(self._columns[key])).next_sibling.next_sibling.text				
+				except:
+					val = ''
+				data[key] = val
+			val = soup.find("h1", class_="name-company").text		
+			data['name'] = val
+			return data
+		except Exception as e:
+			self.logger.exception(e)
 
-	def _get_company_data_as_tuple(self, url):
+	def get_company_data_as_tuple(self, url):
 		'''получение данных о компании во внутренней странице в виде кортежа'''
 		page = req.get(url)
 		html = page.text

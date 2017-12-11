@@ -27,8 +27,8 @@ class DB:
         console.setLevel(logging.WARNING)
         console.setFormatter(formatter)
 
-        self.logger.addHandler(console)
-        self.logger.addHandler(file_handler)
+        self._logger.addHandler(console)
+        self._logger.addHandler(file_handler)
 
         self.conditions = ()
 
@@ -51,7 +51,7 @@ class DB:
             self._oracle_conn = cx_Oracle.connect(self._conn_oracle_sett["user"], self._conn_oracle_sett["password"],
                                                   self._dsn)
         except Exception as e:
-            self.logger.exception(e)
+            self._logger.exception(e)
 
 
 
