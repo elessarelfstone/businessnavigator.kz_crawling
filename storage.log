@@ -18,3 +18,90 @@ Traceback (most recent call last):
   File "D:\Projects\python\scrapping\dbfill.py", line 18, in fill_main_storage
     self._oracle_conn.or_cur.commit()
 AttributeError: 'cx_Oracle.Connection' object has no attribute 'or_cur'
+2017-12-08 16:29:48,727 Telecom_Storage ERROR    'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 18, in fill_main_storage
+    or_cur.executemany(sql, data)
+  File "C:\Python3\lib\encodings\iso8859_5.py", line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_table)
+UnicodeEncodeError: 'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+2017-12-08 16:31:18,877 Telecom_Storage ERROR    'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 18, in fill_main_storage
+    or_cur.executemany(sql, data)
+  File "C:\Python3\lib\encodings\iso8859_5.py", line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_table)
+UnicodeEncodeError: 'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+2017-12-08 16:35:34,650 Telecom_Storage ERROR    'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 18, in fill_main_storage
+    or_cur.executemany(sql, data)
+  File "C:\Python3\lib\encodings\iso8859_5.py", line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_table)
+UnicodeEncodeError: 'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+2017-12-08 16:39:33,183 Telecom_Storage ERROR    'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 18, in fill_main_storage
+    or_cur.executemany(sql, data)
+  File "C:\Python3\lib\encodings\iso8859_5.py", line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_table)
+UnicodeEncodeError: 'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+2017-12-11 09:12:51,690 Telecom_Storage ERROR    'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 18, in fill_main_storage
+    or_cur.executemany(sql, data)
+  File "C:\Python3\lib\encodings\iso8859_5.py", line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_table)
+UnicodeEncodeError: 'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+2017-12-11 09:30:54,998 Telecom_Storage ERROR    'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 18, in fill_main_storage
+    or_cur.executemany(sql, data)
+  File "C:\Python3\lib\encodings\iso8859_5.py", line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_table)
+UnicodeEncodeError: 'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+2017-12-11 09:40:40,047 Telecom_Storage ERROR    'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 18, in fill_main_storage
+    or_cur.executemany(sql, data)
+  File "C:\Python3\lib\encodings\iso8859_5.py", line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_table)
+UnicodeEncodeError: 'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+2017-12-11 10:00:02,150 Telecom_Storage ERROR    'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 16, in fill_main_storage
+    or_cur.executemany(sql, data)
+  File "C:\Python3\lib\encodings\iso8859_5.py", line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_table)
+UnicodeEncodeError: 'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+2017-12-11 10:34:28,373 Telecom_Storage ERROR    'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 16, in fill_main_storage
+    or_cur.executemany(sql, data)
+  File "C:\Python3\lib\encodings\iso8859_5.py", line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_table)
+UnicodeEncodeError: 'charmap' codec can't encode character '\u049a' in position 46: character maps to <undefined>
+2017-12-11 13:00:49,221 Telecom_Storage ERROR    'charmap' codec can't encode character '\u04d8' in position 10: character maps to <undefined>
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 16, in fill_main_storage
+    or_cur.executemany(sql, data)
+  File "C:\Python3\lib\encodings\iso8859_5.py", line 12, in encode
+    return codecs.charmap_encode(input,errors,encoding_table)
+UnicodeEncodeError: 'charmap' codec can't encode character '\u04d8' in position 10: character maps to <undefined>
+2017-12-11 13:03:39,231 Telecom_Storage ERROR    ORA-12899: value too large for column "ODT"."BUSINESS_NAVIGATOR_COMPANYES"."KIND_OF_ACTIVITY" (actual: 110, maximum: 100)
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 16, in fill_main_storage
+    or_cur.executemany(sql, data)
+cx_Oracle.DatabaseError: ORA-12899: value too large for column "ODT"."BUSINESS_NAVIGATOR_COMPANYES"."KIND_OF_ACTIVITY" (actual: 110, maximum: 100)
+2017-12-11 15:19:17,620 Telecom_Storage ERROR    _get_data_encode() takes 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 20, in fill_main_storage
+    data = self._get_data_encode(data, charset)
+TypeError: _get_data_encode() takes 2 positional arguments but 3 were given
+2017-12-11 15:20:32,771 Telecom_Storage ERROR    too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "D:\Projects\python\scrapping\dbfill.py", line 20, in fill_main_storage
+    data = self._get_data_encode(data, charset)
+  File "D:\Projects\python\scrapping\dbfill.py", line 11, in _get_data_encode
+    for key, val in dic:
+ValueError: too many values to unpack (expected 2)

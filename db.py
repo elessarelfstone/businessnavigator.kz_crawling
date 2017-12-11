@@ -40,7 +40,7 @@ class DB:
             if parser.has_section('oracle'):
                 params = parser.items('oracle')
                 for param in params:
-                    _conn_oracle_sett[param[0]] = param[1]                
+                    _conn_oracle_sett[param[0]] = param[1]
             else:
                 raise Exception('Секции отсутсвуют')
             self._conn_oracle_sett = _conn_oracle_sett
@@ -49,7 +49,7 @@ class DB:
             self._dsn = cx_Oracle.makedsn(self._conn_oracle_sett["host"], self._conn_oracle_sett["port"],
                                           self._conn_oracle_sett["sid"])
             self._oracle_conn = cx_Oracle.connect(self._conn_oracle_sett["user"], self._conn_oracle_sett["password"],
-                                                  self._dsn)       
+                                                  self._dsn)
         except Exception as e:
             self.logger.exception(e)
 

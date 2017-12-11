@@ -3,11 +3,12 @@ import requests as req
 from bs4 import BeautifulSoup
 from lxml import html
 import logging
+import codecs
 
 class BusinessNavigatorParser:
 
 	ROOT = "http://businessnavigator.kz"
-	COMPANYES = "/ru/branch/"
+	COMPANYES = "/ru/branch/"	
 
 	# колонки для данных	
 	_columns = {}
@@ -15,7 +16,7 @@ class BusinessNavigatorParser:
 	# шаблон для поиска числа	
 	_re_search_detail_template = r'\d{5}'
 
-	def __init__(self):
+	def __init__(self, ):
 
 		# добавляем логгера
 		self._logger = logging.getLogger("BusinessNavigatorParser")
@@ -23,16 +24,16 @@ class BusinessNavigatorParser:
 
 		formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
 
-        file_handler = logging.FileHandler('storage.log')
-        file_handler.setLevel(logging.INFO)
-        file_handler.setFormatter(formatter)
+		file_handler = logging.FileHandler('storage.log')
+		file_handler.setLevel(logging.INFO)
+		file_handler.setFormatter(formatter)
 
-        console = logging.StreamHandler()
-        console.setLevel(logging.WARNING)
-        console.setFormatter(formatter)
+		console = logging.StreamHandler()
+		console.setLevel(logging.WARNING)
+		console.setFormatter(formatter)
 
-        self._logger.addHandler(console)
-        self._logger.addHandler(file_handler)
+		self._logger.addHandler(console)
+		self._logger.addHandler(file_handler)
 
 		# формируем структуру базы
 		self._columns["name"] = "Наименование"
@@ -72,7 +73,7 @@ class BusinessNavigatorParser:
 		'''получение ссылок на страницы (внутренней) каждой компании'''
 		page = req.get(url)
 		html = page.text
-		soup = BeautifulSoup(html, 'lxml')
+		soup = BeautifulSoup(html, 'lxml')	
 		urls = soup.find("table", class_="mt40").find_all("a", class_="details")
 		return [url.get('href') for url in urls]
 	
@@ -82,13 +83,14 @@ class BusinessNavigatorParser:
 		html = page.text
 		soup = BeautifulSoup(html, 'lxml')
 		data = {}		
-		for key in self._columns.keys():			
-			try:				
-				val = soup.find("td", text=re.compile(self._columns[key])).next_sibling.next_sibling.text
+		for key in self._columns.keys():
+			try:
+				val = soup.find("td", text=re.compile(self._columns[key])).next_sibling.next_sibling.text				
 			except:
 				val = ''
 			data[key] = val
-		data['name'] = soup.find("h1", class_="name-company").text
+		val = soup.find("h1", class_="name-company").text		
+		data['name'] = val
 		return data
 
 	def _get_company_data_as_tuple(self, url):
@@ -96,7 +98,7 @@ class BusinessNavigatorParser:
 		page = req.get(url)
 		html = page.text
 		soup = BeautifulSoup(html, 'lxml')
-		data = []		
+		data = []
 		data.append(soup.find("h1", class_="name-company").text)
 		for key in self._columns.keys():
 			try:
@@ -131,11 +133,10 @@ class BusinessNavigatorParser:
 		page_url_templ = '?PAGEN_8={}'
 		urls = []
 		data = []
-		for i in range(start,end):
+		for i in range(start,end+1):
 			page_url = self.ROOT+self.COMPANYES+page_url_templ.format(i)
-			print('Скраппинг '+ page_url)
-			urls = self._get_table_urls(page_url)		
+			urls = self._get_table_urls(page_url)
 			for url in urls:
 				temp = self._get_company_data(self.ROOT+url)
-				data.append(temp)		
+				data.append(temp)
 		return data
