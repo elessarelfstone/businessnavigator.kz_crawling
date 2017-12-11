@@ -59,7 +59,7 @@ class BusinessNavigatorParser:
 			_max_page = self._get_max_page()
 		except Exception as e:
 			self._logger.exception(e)
-	
+		
 	def _get_max_page(self):
 		'''получение максимальной страницы в пагинаторе'''
 		page = req.get(self.ROOT+self.COMPANYES)
@@ -67,7 +67,8 @@ class BusinessNavigatorParser:
 		soup = BeautifulSoup(html, 'lxml')
 		urls = soup.find("div", class_="bx_pagination_page").find_all("a", text=re.compile(self._re_search_detail_template))
 		max_page = urls.pop().text
-		return max_page
+		return max_page		
+
 
 	def _get_table_urls(self, url):
 		'''получение ссылок на страницы (внутренней) каждой компании'''
@@ -96,7 +97,7 @@ class BusinessNavigatorParser:
 		except Exception as e:
 			self.logger.exception(e)
 
-	def get_company_data_as_tuple(self, url):
+	def _get_company_data_as_tuple(self, url):
 		'''получение данных о компании во внутренней странице в виде кортежа'''
 		page = req.get(url)
 		html = page.text
@@ -115,10 +116,9 @@ class BusinessNavigatorParser:
 		"""получение структуры таблицы"""
 		return self._columns.keys()
 
-	# получение данных с одной внешней страницы
+	
 	def get_data_by_pagin_page(self, num):
-		global max_page
-		# max_page = self._get_max_page()
+		"""получение данных с одной внешней страницы"""		
 		page_url_templ = '?PAGEN_8={}'
 		urls = []
 		data = []	
@@ -130,9 +130,8 @@ class BusinessNavigatorParser:
 		return data
 		
 	def get_data_by_pagin_range(self,start,end):
-		"""получение для диапазона страниц пагинации"""
+		"""получение данных для диапазона страниц пагинации"""
 		global max_page
-		# max_page = self._get_max_page()
 		page_url_templ = '?PAGEN_8={}'
 		urls = []
 		data = []
