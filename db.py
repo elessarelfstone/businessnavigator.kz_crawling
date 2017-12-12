@@ -14,8 +14,8 @@ class DB:
         """
         # настройка логирования
         self._application_name = "Telecom_Storage"
-        self.logger = logging.getLogger(self._application_name)
-        self.logger.setLevel(logging.INFO)
+        self._logger = logging.getLogger(self._application_name)
+        self._logger.setLevel(logging.INFO)
 
         formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
 

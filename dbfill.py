@@ -27,6 +27,6 @@ class DbFill(db.DB):
 			or_cur.executemany(sql, data)
 			self._oracle_conn.commit()
 		except Exception as e:
-			self.logger.exception(e)
+			self._logger.exception(e)
 
 	
