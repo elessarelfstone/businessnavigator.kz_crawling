@@ -52,7 +52,8 @@ class BusinessNavigatorParser:
 		self._columns["bin"] = "БИН"
 		self._columns["year_of_formation"] = "Год образования"
 		self._columns["payer_status"] = "Статус плательщика"
-		self._columns["claster"] = "Базовые металлы и металлопрокат"
+		self._columns["claster"] = "Кластер"
+		self._columns["email"] = "E-mail"
 
 		# пытаемся достучатся до сайта и получить номер максимальной страницы в пагинаторе
 		try:

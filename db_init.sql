@@ -1,5 +1,5 @@
 create table business_navigator_companyes(
-	name varchar2(500),
+	name nvarchar2(500),
 	region varchar2(100),
 	district varchar2(100),
 	town varchar2(100),
@@ -15,5 +15,5 @@ create table business_navigator_companyes(
 	bin varchar2(50),
 	year_of_formation varchar2(4),
 	payer_status varchar2(100),
-	claster varchar2(100)
-	)
+	claster varchar2(100),
+	email varchar2(300)	)
