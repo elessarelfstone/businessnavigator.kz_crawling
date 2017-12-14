@@ -10,13 +10,13 @@ class BusinessNavigatorParser:
 	ROOT = "http://businessnavigator.kz"
 	COMPANYES = "/ru/branch/"	
 
-	# колонки для данных	
+	# колонки для данных
 	_columns = {}
 
 	# шаблон для поиска числа	
 	_re_search_detail_template = r'\d{5}'
 
-	def __init__(self, ):
+	def __init__(self):
 
 		# добавляем логгера
 		self._logger = logging.getLogger("BusinessNavigatorParser")
@@ -56,12 +56,14 @@ class BusinessNavigatorParser:
 
 		# пытаемся достучатся до сайта и получить номер максимальной страницы в пагинаторе
 		try:
-			_max_page = self._get_max_page()
+			self._max_page = self._get_max_page()
+			# тест
+			self._max_page = 1000
 		except Exception as e:
 			self._logger.exception(e)
 		
 	def _get_max_page(self):
-		'''получение максимальной страницы в пагинаторе'''
+		"""получение максимальной страницы в пагинаторе"""
 		page = req.get(self.ROOT+self.COMPANYES)
 		html = page.text
 		soup = BeautifulSoup(html, 'lxml')
@@ -69,9 +71,8 @@ class BusinessNavigatorParser:
 		max_page = urls.pop().text
 		return max_page		
 
-
 	def _get_table_urls(self, url):
-		'''получение ссылок на страницы (внутренней) каждой компании'''
+		"""получение ссылок на страницы (внутренней) каждой компании"""
 		page = req.get(url)
 		html = page.text
 		soup = BeautifulSoup(html, 'lxml')	
@@ -79,7 +80,7 @@ class BusinessNavigatorParser:
 		return [url.get('href') for url in urls]
 	
 	def _get_company_data(self, url):
-		'''получение данных о компании во внутренней странице в виде словаря'''
+		"""получение данных о компании во внутренней странице в виде словаря"""
 		try:
 			page = req.get(url)
 			html = page.text
@@ -91,14 +92,18 @@ class BusinessNavigatorParser:
 				except:
 					val = ''
 				data[key] = val
-			val = soup.find("h1", class_="name-company").text		
+			try:
+				val = soup.find("h1", class_="name-company").text
+			except:
+				val = ''
 			data['name'] = val
 			return data
 		except Exception as e:
-			self.logger.exception(e)
+			self._logger.exception(e)
+			self._logger.info(url)
 
 	def _get_company_data_as_tuple(self, url):
-		'''получение данных о компании во внутренней странице в виде кортежа'''
+		"""получение данных о компании во внутренней странице в виде кортежа"""
 		page = req.get(url)
 		html = page.text
 		soup = BeautifulSoup(html, 'lxml')
@@ -116,13 +121,17 @@ class BusinessNavigatorParser:
 		"""получение структуры таблицы"""
 		return self._columns.keys()
 
-	
+	def get_ranges_of_pagin(self, d=50):
+		"""получаем порции-диапазоны страниц пагинатора по которым будет ходить паук """
+		r = range(1, self._max_page, d)
+		result = [(x, x+d-1 if self._max_page-x > d else self._max_page) for x in r]
+		return result
+
 	def get_data_by_pagin_page(self, num):
-		"""получение данных с одной внешней страницы"""		
+		"""получение данных с одной внешней страницы"""
 		page_url_templ = '?PAGEN_8={}'
-		urls = []
-		data = []	
-		page_url = self.ROOT+self.COMPANYES+page_url_templ.format(num)	
+		data = []
+		page_url = self.ROOT+self.COMPANYES+page_url_templ.format(num)
 		urls = self._get_table_urls(page_url)
 		for url in urls:
 			temp = self._get_company_data(self.ROOT+url)
@@ -133,7 +142,6 @@ class BusinessNavigatorParser:
 		"""получение данных для диапазона страниц пагинации"""
 		global max_page
 		page_url_templ = '?PAGEN_8={}'
-		urls = []
 		data = []
 		for i in range(start,end+1):
 			page_url = self.ROOT+self.COMPANYES+page_url_templ.format(i)

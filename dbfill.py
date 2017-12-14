@@ -14,7 +14,7 @@ class DbFill(db.DB):
 		return result	
 
 	def fill_main_storage(self, structure, data, charset="utf-8"):
-		"""заливка в данных в таблицу"""
+		"""заливка данных в таблицу"""
 		try:
 			if charset != "utf-8":
 				data = self._get_data_encode(data, charset)
@@ -22,11 +22,9 @@ class DbFill(db.DB):
 			param_vals_lst = [ ':{}'.format(i) for i in structure]
 			columns_statement = ', '.join(structure)
 			values_statement = ', '.join(param_vals_lst)
-			sql = sql + columns_statement + ') values (' + values_statement + ')'
+			sql = sql + columns_statement + ') values (' + values_statement + ')'			
 			or_cur = self._oracle_conn.cursor()
 			or_cur.executemany(sql, data)
 			self._oracle_conn.commit()
 		except Exception as e:
-			self._logger.exception(e)
-
-	
+			self._logger.exception(e)	
